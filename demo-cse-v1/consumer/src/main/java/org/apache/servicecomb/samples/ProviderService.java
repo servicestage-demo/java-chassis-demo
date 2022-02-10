@@ -21,4 +21,6 @@ public interface ProviderService {
   String sayHello(String name);
 
   String sayHelloCanary(String name);
+
+  String test();
 }

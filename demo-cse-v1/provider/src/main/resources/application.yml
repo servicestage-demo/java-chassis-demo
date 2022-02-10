@@ -18,26 +18,26 @@
 # override common configurations in common module
 servicecomb-config-order: 10
 
+CSE_V2_SC: http://127.0.0.1:30100
+CSE_V2_CC: http://127.0.0.1:30113
+
 servicecomb:
+  datacenter:
+    name: test2
+    availableZone: AZ2
+    region: region
+
   service:
     application: demo-java-chassis-cse-v1
     name: provider
     version: 0.0.1
     registry:
-      address: https://cse.cn-south-1.myhuaweicloud.com
+      address: ${CSE_V2_SC}
       instance:
         watch: false
   config:
     client:
-      serverUri: https://cse.cn-south-1.myhuaweicloud.com
-
+      serverUri:  ${CSE_V2_CC}
+      fileSource: consumer.yaml
   rest:
-    address: 0.0.0.0:9093 # should be same with server.port to use web container
-
-# Configure AK/SK credentials if needed. Default not enabled.
-#  credentials:
-#    akskEnabled: true
-#    accessKey: ${CREDENTIALS_AK}
-#    secretKey: ${CREDENTIALS_SK}
-#    akskCustomCipher: default
-#    project: cn-south-1
+    address: 0.0.0.0:9090 # should be same with server.port to use web container

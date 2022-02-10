@@ -40,4 +40,9 @@ public class ConsumerController {
   public String sayHelloCanary(@RequestParam("name") String name) {
     return providerService.sayHelloCanary(name);
   }
+
+  @GetMapping("/test")
+  public String test() {
+    return providerService.test();
+  }
 }

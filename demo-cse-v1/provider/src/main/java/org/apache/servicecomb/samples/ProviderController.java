@@ -18,6 +18,8 @@
 package org.apache.servicecomb.samples;
 
 import org.apache.servicecomb.provider.rest.common.RestSchema;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +28,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(path = "/")
 public class ProviderController {
   // a very simple service to echo the request parameter
+  @Autowired
+  private Environment environment;
+
+  @GetMapping("/test")
+  public String test() {
+    return environment.getProperty("servicecomb.datacenter.availableZone");
+  }
+
   @GetMapping("/sayHello")
   public String sayHello(@RequestParam("name") String name) {
     return "Hello " + name;
