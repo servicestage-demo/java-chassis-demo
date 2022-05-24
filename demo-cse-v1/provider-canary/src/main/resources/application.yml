@@ -18,18 +18,31 @@
 # override common configurations in common module
 servicecomb-config-order: 10
 
+CSE_V1_SC: http://127.0.0.1:30100
+CSE_V1_CC: http://127.0.0.1:30113
+
 servicecomb:
   service:
     application: demo-java-chassis-cse-v1
     name: provider
     version: 0.0.2
     registry:
-      address: https://cse.cn-south-1.myhuaweicloud.com
+      address: ${CSE_V1_SC}
       instance:
         watch: false
   config:
     client:
-      serverUri: https://cse.cn-south-1.myhuaweicloud.com
+      serverUri: ${CSE_V1_CC}
+
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
+
+  handler:
+    chain:
+      Provider:
+        default: bizkeeper-provider
 
   rest:
     address: 0.0.0.0:9095
