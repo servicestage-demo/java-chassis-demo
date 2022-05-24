@@ -45,5 +45,10 @@ servicecomb:
       enabled: true
       serverUri: http://127.0.0.1:30109
 
+  handler:
+    chain:
+      Consumer:
+        default: bizkeeper-provider
+
   rest:
     address: 0.0.0.0:9090 # should be same with server.port to use web container
