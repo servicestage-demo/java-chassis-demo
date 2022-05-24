@@ -47,7 +47,7 @@ servicecomb:
 
   handler:
     chain:
-      Consumer:
+      Provider:
         default: bizkeeper-provider
 
   rest:

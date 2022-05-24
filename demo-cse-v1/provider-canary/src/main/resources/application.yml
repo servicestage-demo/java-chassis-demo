@@ -41,9 +41,9 @@ servicecomb:
 
   handler:
     chain:
-      Consumer:
+      Provider:
         default: bizkeeper-provider
-        
+
   rest:
     address: 0.0.0.0:9095
 
