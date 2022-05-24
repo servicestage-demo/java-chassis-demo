@@ -38,6 +38,12 @@ servicecomb:
   config:
     client:
       serverUri:  ${CSE_V2_CC}
-      fileSource: consumer.yaml
+      fileSource: provider.yaml
+
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
+
   rest:
     address: 0.0.0.0:9090 # should be same with server.port to use web container
