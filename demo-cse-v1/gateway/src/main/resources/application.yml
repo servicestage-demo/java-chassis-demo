@@ -19,8 +19,8 @@
 # override common configurations in common module
 servicecomb-config-order: 100
 
-CSE_V2_SC: http://127.0.0.1:30100
-CSE_V2_CC: http://127.0.0.1:30113
+CSE_V1_SC: http://127.0.0.1:30100
+CSE_V1_CC: http://127.0.0.1:30113
 
 servicecomb:
   service:
@@ -28,12 +28,12 @@ servicecomb:
     name: gateway
     version: 0.0.1
     registry:
-      address: ${CSE_V2_SC}
+      address: ${CSE_V1_SC}
       instance:
         watch: false
   config:
     client:
-      serverUri: ${CSE_V2_CC}
+      serverUri: ${CSE_V1_CC}
 
   monitor:
     client:
