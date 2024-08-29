@@ -18,19 +18,18 @@
 
 # override common configurations in common module
 servicecomb-config-order: 100
-CSE_V2_SC: http://127.0.0.1:30100
-CSE_V2_CC: http://127.0.0.1:30110
+
 servicecomb:
   service:
     application: demo-java-chassis-cse-v2
     name: gateway
-    version: 0.0.1
+    version: ${CAS_INSTANCE_VERSION:0.0.1}
     registry:
-      address: ${CSE_V2_SC}
+      address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
       instance:
         watch: false
   kie:
-    serverUri: ${CSE_V2_CC}
+    serverUri: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
     customLabel: public
 
   rest:
@@ -51,10 +50,9 @@ servicecomb:
               microserviceName: consumer
               versionRule: 0.0.0+
 
-  # Configure AK/SK credentials if needed. Default not enabled.
   credentials:
-    akskEnabled: true
-    accessKey: ${CREDENTIALS_AK}
-    secretKey: ${CREDENTIALS_SK}
-    akskCustomCipher: default
-    project: cn-south-1
+    rbac.enabled: ${CSE_V2_RBAC_ENABLED:false}
+    account:
+      name: ${CSE_V2_ACCOUNT_NAME:root}
+      password: ${CSE_V2_ACCOUNT_PASSWORD:testtest}
+    cipher: testCipher

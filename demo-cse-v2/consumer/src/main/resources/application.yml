@@ -18,23 +18,29 @@
 
 # override common configurations in common module
 servicecomb-config-order: 10
-CSE_V2_SC: http://127.0.0.1:30100
-CSE_V2_CC: http://127.0.0.1:30110
+
 servicecomb:
   service:
     application: demo-java-chassis-cse-v2
     name: consumer
-    version: 0.0.1
+    version: ${CAS_INSTANCE_VERSION:0.0.1}
     registry:
-      address: ${CSE_V2_SC}
+      address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
       instance:
         watch: false
-      autodiscovery: true
+      autodiscovery: false
   kie:
-    serverUri: ${CSE_V2_CC}
+    serverUri: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
     customLabel: public
     customLabelValue: default
 
   rest:
     address: 0.0.0.0:9092  # should be same with server.port to use web container
+
+  credentials:
+    rbac.enabled: ${CSE_V2_RBAC_ENABLED:false}
+    account:
+      name: ${CSE_V2_ACCOUNT_NAME:root}
+      password: ${CSE_V2_ACCOUNT_PASSWORD:testtest}
+    cipher: testCipher
 
